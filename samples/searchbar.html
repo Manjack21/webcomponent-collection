@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searchbar sample</title>
+    <script type="module" src="../src/components/searchbar.js"></script>
+    <style>
+        :root {
+            font-family: sans-serif;
+            font-size: 16px;
+        }
+        ul li {
+            list-style-type: none;
+            padding: 1rem;
+            border-bottom: 1px solid grey;
+        }
+        ul li:first-of-type
+        {
+            border-top: 1px solid grey;
+        }
+        search-bar {
+            --border-color: rgb(108, 112, 141);
+            --button-color: rgb(208, 208, 208);
+            --button-hover-color: rgb(163, 181, 253);
+            --font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sample of the search-bar element</h1>
+
+    <div>
+        <search-bar item-selector="ul#item-list li" placeholder="Search text" button-text="Search!"></search-bar>
+    </div>
+    <ul id="item-list">
+        <li>Test1</li>
+        <li>Hello, world!</li>
+        <li>Banana</li>
+        <li>FooBar</li>
+    </ul>
+</body>
+</html>
