@@ -89,18 +89,29 @@ button:hover {
 
     filterItems(searchTerm)
     {
-        const search = new RegExp(searchTerm, "ig");
+        const search = new RegExp(searchTerm, "i");
         Array.from(document.querySelectorAll(this.getAttribute('item-selector')))
             .forEach(item => {                
-                if(item.style.display !== 'none' && item.textContent.match(search) === null)
+                if(item.style.display !== 'none' && !this.itemPredicate(item, search))
                 {   
                     item.style.display = 'none';
                 }                 
-                else if(item.style.display === 'none' && item.textContent.match(search) !== null)
+                else if(item.style.display === 'none' && this.itemPredicate(item, search))
                 {
                     item.style.display = '';
                 }
             });
+    }
+
+    /**
+     * Predicate for each item element. Returns true if the element should be visible, otherwise false.
+     * @param {HTMLElement} elementNode 
+     * @param {RegExp} search
+     * @returns {Boolean}
+     */
+    itemPredicate = function (elementNode, search)
+    {
+        return elementNode.textContent.match(search) !== null;
     }
     
     /**
