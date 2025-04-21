@@ -9,7 +9,11 @@ A component that renders an input field for search text, and a button to trigger
 The following markup will generate a filter component for list items (`li`) of an unordered list with the id `ul#item-list`.
 
 ```html
+<!-- search bar with search button -->
 <search-bar item-selector="ul#item-list li" placeholder="Search text" button-text="Search!"></search-bar>
+
+<!-- search bar that search on type; the posible modes are 'input' and 'click' -->
+<search-bar item-selector="ul#item-list li" placeholder="Search text" mode="input"></search-bar>
 ```
 
 ### Styling Options

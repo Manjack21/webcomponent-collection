@@ -6,6 +6,7 @@ class SearchBar extends HTMLElement
 {
     constructor() {
         super();
+        this.timeout = null;
     }
     /**
      * this method is called when the element is added to the document
@@ -54,17 +55,34 @@ button:hover {
 }
         `;
         this.shadow.appendChild(style);
+        const mode = this.getAttribute('mode') ?? "click";
 
         const container = document.createElement("div");
 
         const textInput = document.createElement("input");
         textInput.placeholder = this.getAttribute('placeholder') ?? "";
-        container.appendChild(textInput);
+        if(mode === 'input')
+        {
+            textInput.addEventListener(
+                'keyup', 
+                () => {
+                    window.clearTimeout(this.timeout);
+                    this.timeout = window.setTimeout(
+                        () => this.filterItems(textInput.value),
+                        300
+                    );
+                }
+            );
+        }
+        container.appendChild(textInput);        
 
-        const searchButton = document.createElement("button");
-        searchButton.textContent = this.getAttribute('button-text') ?? "Search";
-        searchButton.addEventListener('click', () => this.filterItems(textInput.value));
-        container.appendChild(searchButton);
+        if(mode === 'click')
+        {
+            const searchButton = document.createElement("button");
+            searchButton.textContent = this.getAttribute('button-text') ?? "Search";
+            searchButton.addEventListener('click', () => this.filterItems(textInput.value));
+            container.appendChild(searchButton);
+        }
         
         this.shadow.appendChild(container);
     }
