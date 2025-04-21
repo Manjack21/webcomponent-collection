@@ -27,9 +27,14 @@ class SearchBar extends HTMLElement
     --font-size: 1.1rem;
 }
 
+div {
+    display:grid;
+    grid-template-columns: auto 6rem;
+    column-gap: 4px;
+}
+
 input {
     font-size: var(--font-size);
-    margin-right: 0.5rem;
     padding: 8px;
     border:1px solid;
     border-color:var(--border-color);
